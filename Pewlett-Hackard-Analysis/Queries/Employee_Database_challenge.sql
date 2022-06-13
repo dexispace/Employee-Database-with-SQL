@@ -1,7 +1,5 @@
----------------------------------------------------------------------------------------------------------------------
---Deliverable 1: 
----------------------------------------------------------------------------------------------------------------------
---The Number of Retiring Employees by Title.
+-----Deliverable 1
+-----Retiring Employees by Title
 SELECT e.emp_no,
 	e.first_name, 
 	e.last_name, 
@@ -13,8 +11,8 @@ FROM employees as e
 INNER JOIN titles as ti
 ON (e.emp_no = ti.emp_no)
 	WHERE (e.birth_date BETWEEN '1952-01-01' AND '1955-12-31')
-ORDER BY e.emp_no;
-	
+ORDER BY e.emp_no ASC;
+
 -- The Number of Retiring Employees by Title (No Duplicates).
 SELECT DISTINCT ON (rt.emp_no) 
 	rt.emp_no,
@@ -23,7 +21,7 @@ SELECT DISTINCT ON (rt.emp_no)
 	rt.title
 INTO unique_titles
 FROM retirement_titles as rt
-ORDER BY rt.emp_no, rt.to_date DESC;
+ORDER BY rt.emp_no ASC, rt.to_date DESC;
 
 -- The number of employees by their most recent job title who are about to retire.
 SELECT COUNT(ut.title), ut.title
@@ -32,10 +30,8 @@ FROM unique_titles as ut
 GROUP BY ut.title
 ORDER BY count DESC;
 
------------------------------------------------------------------------------------------------------------------------------
---Deliverable 2: 
------------------------------------------------------------------------------------------------------------------------------
---The Employees Eligible for the Mentorship Program.
+-----Deliverable 2: 
+-----The Employees Eligible for the Mentorship Program.
 SELECT DISTINCT ON (e.emp_no)
 	e.emp_no,
 	e.first_name, 
@@ -54,10 +50,8 @@ WHERE (e.birth_date BETWEEN '1965-01-01' AND '1965-12-31')
 AND (de.to_date = '9999-01-01')
 ORDER BY e.emp_no, ti.from_date DESC;
 
----------------------------------------------------------------------------------------------------------------------------
---Deliverable 3:
-------------------------------------------------------------------------------------------------------------------------
---Roles per Staff and Departament: 
+-----Deliverable 3:
+-----Roles per Staff and Departament: 
 SELECT DISTINCT ON (rt.emp_no) 
 	rt.emp_no,
 	rt.first_name,
@@ -86,5 +80,4 @@ FROM (SELECT title, dept_name from unique_titles_department) as ut
 WHERE ut.title IN ('Senior Engineer', 'Senior Staff', 'Technique Leader', 'Manager')
 GROUP BY ut.dept_name, ut.title
 ORDER BY ut.dept_name DESC;
-
 
