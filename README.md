@@ -1,4 +1,4 @@
-# Employee-Database-with-SQL
+# Employee Database with SQL
 Module 7 - data analytics bootcamp
 
 ## 1) OVERVIEW OF THE ANALYSIS : Determine which retiring employees are eligible to participate in the mentorship program.
